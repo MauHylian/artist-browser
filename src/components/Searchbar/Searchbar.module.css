@@ -1,0 +1,16 @@
+form {
+  width: 100%;
+  text-align: center;
+}
+
+.search {
+  margin: auto;
+  width: 20rem;
+  border: 1px solid #cbcbcb;
+  border-radius: 50px;
+  padding: 10px;
+}
+
+.search:focus {
+  outline: none;
+}

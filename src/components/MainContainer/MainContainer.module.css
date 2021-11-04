@@ -1,0 +1,11 @@
+.container {
+  background-color: #ffffff;
+  height: 100%;
+  width: 50%;
+  padding: 2rem 6rem;
+  margin: auto;
+}
+
+.container p {
+  margin: 0;
+}

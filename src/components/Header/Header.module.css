@@ -1,0 +1,6 @@
+header {
+  display: flex;
+  background-color: #ffffff;
+  border: 1px solid #cbcbcb;
+  height: 3rem;
+}
