@@ -3,4 +3,6 @@ header {
   background-color: #ffffff;
   border: 1px solid #cbcbcb;
   height: 3rem;
+  justify-content: center;
+  align-items: center;
 }

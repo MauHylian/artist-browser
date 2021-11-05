@@ -60,7 +60,6 @@ const App = (props) => {
   return (
     <div className={classes.App}>
       <Header parentCallback={handleCallback} />
-      <LoginButton />
       <MainContainer>
         <ArtistInfo name={artistName} img={artistImg} />
         <Divider style={{ margin: "3rem 0 3rem 0" }} />

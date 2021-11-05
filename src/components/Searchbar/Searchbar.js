@@ -5,7 +5,7 @@ import classes from "./Searchbar.module.css";
 
 const CONSUMER_KEY = "FrRkJYVAJJOjgXtulkDY";
 const CONSUMER_SECRET = "inbcWrkhMdtOcSMADzZzWjZNALOCXKQF";
-var ARTIST_INFO_SPOTIFY = {};
+var ARTIST_INFO_SPOTIFY = null;
 // FOTO, NOMBRE, DESCRIPCION, ALBUMES
 
 const Searchbar = (props) => {
@@ -29,10 +29,15 @@ const Searchbar = (props) => {
       }
       const data = await response.json();
       console.log(data);
-      ARTIST_INFO_SPOTIFY = data;
-      return data;
+      if (data.artists.items.length === 0) {
+        console.log("NO ARTIST");
+      } else {
+        ARTIST_INFO_SPOTIFY = data;
+        return data;
+      }
     } catch (error) {
       console.log(error);
+      return;
     }
   }, []);
 
@@ -43,7 +48,13 @@ const Searchbar = (props) => {
 
     await getArtistInfo(query);
 
-    props.parentCallback(ARTIST_INFO_SPOTIFY);
+    if (ARTIST_INFO_SPOTIFY !== null) {
+      props.parentCallback(ARTIST_INFO_SPOTIFY);
+    } else {
+      console.log(
+        "No procedió la búsqueda. ¿Solicitó el token o escribió bien el nombre del artista?"
+      );
+    }
 
     // fetch(URL)
     //   .then((response) => response.json())

@@ -1,4 +1,5 @@
 import React from "react";
+import LoginButton from "../LoginButton/LoginButton";
 import Searchbar from "../Searchbar/Searchbar";
 
 import classes from "./Header.module.css";
@@ -11,6 +12,7 @@ const Header = (props) => {
 
   return (
     <header>
+      <LoginButton />
       <Searchbar parentCallback={handleCallback} />
     </header>
   );

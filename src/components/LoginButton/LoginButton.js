@@ -46,7 +46,7 @@ const LoginButton = () => {
     //  console.log(error);
     //}
   }, []);
-  return <button onClick={loginHandler}>Log in</button>;
+  return <button onClick={loginHandler}>Get token</button>;
 };
 
 export default LoginButton;
