@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useCallback } from "react";
 
 import classes from "./LoginButton.module.css";
 
 const LoginButton = () => {
   const loginHandler = useCallback(async (event) => {
-    // event.preventDefault();
-
     var OAuth = require("@zalando/oauth2-client-js");
     var spotify = new OAuth.Provider({
       id: "spotify", // required
@@ -33,19 +31,8 @@ const LoginButton = () => {
     console.log(response);
 
     spotify.getAccessToken();
-    //try {
-    //  const response = await fetch(
-    //    `https://accounts.spotify.com/authorize?client_id=${SPOTIFY_CLIENT_ID}&redirect_uri=http://localhost:3000/callback&scope=user-read-private%20user-read-email&response_type=token&state=123`,
-    //    { mode: "no-cors" }
-    //  );
-    //
-    //  console.log(response);
-    //  const data = await response.json();
-    //  console.log(data);
-    //} catch (error) {
-    //  console.log(error);
-    //}
   }, []);
+
   return <button onClick={loginHandler}>Get token</button>;
 };
 

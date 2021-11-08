@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 import classes from "./App.module.css";
 import AlbumInfo from "./components/AlbumInfo/AlbumInfo";
@@ -64,16 +64,20 @@ const App = (props) => {
         <ArtistInfo name={artistName} img={artistImg} />
         <Divider style={{ margin: "3rem 0 3rem 0" }} />
         <p className={classes.albumsHeader}>Albums</p>
-        {artistAlbums.map((album, index) => (
-          <AlbumInfo
-            key={index}
-            src={album.images[0].url}
-            title={album.name}
-            alt="Cover"
-            release="2000"
-            recordLabel="DJI"
-          />
-        ))}
+        {artistAlbums ? (
+          artistAlbums.map((album, index) => (
+            <AlbumInfo
+              key={index}
+              src={album.images[0].url}
+              title={album.name}
+              alt="Cover"
+              release="2000"
+              recordLabel="DJI"
+            />
+          ))
+        ) : (
+          <p>Pide un token y comienza a buscar.</p>
+        )}
       </MainContainer>
     </div>
   );

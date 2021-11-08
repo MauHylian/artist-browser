@@ -1,5 +1,7 @@
 import React from "react";
 import { useCallback } from "react";
+import { ToastContainer, toast, Zoom, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import classes from "./Searchbar.module.css";
 
@@ -9,6 +11,20 @@ var ARTIST_INFO_SPOTIFY = null;
 // FOTO, NOMBRE, DESCRIPCION, ALBUMES
 
 const Searchbar = (props) => {
+  const errorToast = (text) => {
+    toast.error(text, {
+      className: "custom-toast",
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
+  };
+
+  const warnToast = (text) => {
+    toast.warn(text, {
+      className: "custom-toast",
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
+  };
+
   const getArtistInfo = useCallback(async (artist) => {
     try {
       const response = await fetch(
@@ -30,6 +46,8 @@ const Searchbar = (props) => {
       const data = await response.json();
       console.log(data);
       if (data.artists.items.length === 0) {
+        const text = "Parece que el artista no existe.";
+        warnToast(text);
         console.log("NO ARTIST");
       } else {
         ARTIST_INFO_SPOTIFY = data;
@@ -51,9 +69,10 @@ const Searchbar = (props) => {
     if (ARTIST_INFO_SPOTIFY !== null) {
       props.parentCallback(ARTIST_INFO_SPOTIFY);
     } else {
-      console.log(
-        "No procedió la búsqueda. ¿Solicitó el token o escribió bien el nombre del artista?"
-      );
+      const text =
+        "No procedió la búsqueda. ¿Solicitó el token o escribió bien el nombre del artista?";
+      errorToast(text);
+      console.log(text);
     }
 
     // fetch(URL)
@@ -85,6 +104,19 @@ const Searchbar = (props) => {
 
   return (
     <form onSubmit={handleSearch}>
+      <>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </>
       <input className={classes.search} type="text" placeholder="Search.." />
     </form>
   );
